@@ -1,38 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+    tools:showIn="navigation_view"
+    android:id="@+id/sidemenu">
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/space"
+            android:checkable="false"
+            android:enabled="false"
+            android:title=" "
+            app:showAsAction="never" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:checked="true"
+            android:id="@+id/nav_wt"
+            android:checkable="true"
+            android:enabled="true"
+            android:icon="?android:attr/listChoiceIndicatorSingle"
+            android:title="Wertetabelle"
+            android:visible="true" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_nf"
+            android:icon="?android:attr/listChoiceIndicatorSingle"
+            android:title="Normalformen" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_tp"
+            android:icon="?android:attr/listChoiceIndicatorSingle"
+            android:title="Tautologieprüfung" />
+        <item
+            android:id="@+id/nav_vgl"
+            android:icon="?android:attr/listChoiceIndicatorSingle"
+            android:title="Vergleich" />
+        <item
+            android:id="@+id/nav_ks"
+            android:icon="?android:attr/listChoiceIndicatorSingle"
+            android:title="Klauselschreibweise" />
     </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
 
 </menu>
