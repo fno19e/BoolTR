@@ -12,7 +12,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,23 +27,23 @@ public class FrontendInput extends AppCompatActivity
 
     // Variablen bestimmen
     Button buttonZero,
-            button_one,
-            button_delete,
-            button_delete_all,
-            button_plus,
-            button_multiply,
-            button_not,
-            button_arrow,
-            button_darrow,
-            button_bracket1,
-            button_bracket2,
-            button_a,
-            button_b,
-            button_c,
-            button_d,
-            button_e,
-            button_f,
-            button_solve;
+            buttonOne,
+            buttonDelete,
+            buttonDeleteAll,
+            buttonPlus,
+            buttonMultiply,
+            buttonNot,
+            buttonArrow,
+            buttonDarrow,
+            buttonBracket1,
+            buttonBracket2,
+            buttonA,
+            buttonB,
+            buttonC,
+            buttonD,
+            buttonE,
+            buttonF,
+            buttonSolve;
     EditText inputExpression;
     String typeMethod = "wt";
     FloatingActionButton lastInputs;
@@ -72,22 +71,22 @@ public class FrontendInput extends AppCompatActivity
         //Variablen initialisieren
 
         buttonZero = findViewById(R.id.buttonZero);
-        button_one = findViewById(R.id.button_one);
-        button_delete = findViewById(R.id.button_delete);
-        button_plus = findViewById(R.id.button_plus);
-        button_multiply = findViewById(R.id.button_multiply);
-        button_not = findViewById(R.id.button_not);
-        button_arrow = findViewById(R.id.button_arrow);
-        button_darrow = findViewById(R.id.button_darrow);
-        button_bracket1 = findViewById(R.id.button_bracket1);
-        button_bracket2 = findViewById(R.id.button_bracket2);
-        button_a = findViewById(R.id.button_a);
-        button_b = findViewById(R.id.button_b);
-        button_c = findViewById(R.id.button_c);
-        button_d = findViewById(R.id.button_d);
-        button_e = findViewById(R.id.button_e);
-        button_f = findViewById(R.id.button_f);
-        button_solve = findViewById(R.id.button_solve);
+        buttonOne = findViewById(R.id.buttonOne);
+        buttonDelete = findViewById(R.id.buttonDelete);
+        buttonPlus = findViewById(R.id.buttonPlus);
+        buttonMultiply = findViewById(R.id.buttonMultiply);
+        buttonNot = findViewById(R.id.buttonNot);
+        buttonArrow = findViewById(R.id.buttonArrow);
+        buttonDarrow = findViewById(R.id.buttonDarrow);
+        buttonBracket1 = findViewById(R.id.buttonBracket1);
+        buttonBracket2 = findViewById(R.id.buttonBracket2);
+        buttonA = findViewById(R.id.buttonA);
+        buttonB = findViewById(R.id.buttonB);
+        buttonC = findViewById(R.id.buttonC);
+        buttonD = findViewById(R.id.buttonD);
+        buttonE = findViewById(R.id.buttonE);
+        buttonF = findViewById(R.id.buttonF);
+        buttonSolve = findViewById(R.id.buttonSolve);
         lastInputs = findViewById(R.id.lastInputs);
         lastInputsIntent = new Intent(FrontendInput.this, LastInputs.class);
 
@@ -114,11 +113,6 @@ public class FrontendInput extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int height_screen = displayMetrics.heightPixels;
-        int width_screen = displayMetrics.widthPixels;
-
         inputExpression = findViewById(R.id.inputExpression);
 
         //
@@ -131,8 +125,6 @@ public class FrontendInput extends AppCompatActivity
 
         buttonZero = findViewById(R.id.buttonZero);
         //Maße der Buttons kontrollieren
-        buttonZero.setWidth(width_screen / 3);
-        buttonZero.setHeight(height_screen / 3);
         //Drücken des Buttons verarbeiten
         View.OnClickListener buttonZeroListener = new View.OnClickListener() {
             @Override
@@ -152,10 +144,8 @@ public class FrontendInput extends AppCompatActivity
         //
         //
 
-        button_one = findViewById(R.id.button_one);
-        button_one.setWidth(width_screen / 3);
-        button_one.setHeight(height_screen / 3);
-        View.OnClickListener button_one_listener = new View.OnClickListener() {
+        buttonOne = findViewById(R.id.buttonOne);
+        View.OnClickListener buttonOneListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 inputExpression.setText(inputExpression.getText() + "1");
@@ -164,13 +154,13 @@ public class FrontendInput extends AppCompatActivity
                 setCursor();
             }
         };
-        button_one.setOnClickListener(button_one_listener);
+        buttonOne.setOnClickListener(buttonOneListener);
 
         //
         //
 
-        button_delete_all = findViewById(R.id.button_delete);
-        final View.OnLongClickListener button_delete_long_listener = new View.OnLongClickListener() {
+        buttonDeleteAll = findViewById(R.id.buttonDelete);
+        final View.OnLongClickListener buttonDeleteLongListener = new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 inputExpression.setText("");
@@ -178,26 +168,24 @@ public class FrontendInput extends AppCompatActivity
                 return true;
             }
         };
-        button_delete_all.setOnLongClickListener(button_delete_long_listener);
+        buttonDeleteAll.setOnLongClickListener(buttonDeleteLongListener);
 
         //
 
-        button_delete = findViewById(R.id.button_delete);
-        button_delete.setWidth(width_screen / 3);
-        button_delete.setHeight(height_screen / 3);
+        buttonDelete = findViewById(R.id.buttonDelete);
 
-        View.OnClickListener button_delete_listener = new View.OnClickListener() {
+        View.OnClickListener buttonDeleteListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int input_expression_length = inputExpression.length();
+                int inputExpressionLength = inputExpression.length();
                 if (inputExpression.getSelectionStart() != 0) {
-                    if (inputExpression.getSelectionStart() == input_expression_length) {
-                        if (input_expression_length != 0) {
-                            inputExpression.setSelection(input_expression_length);
+                    if (inputExpression.getSelectionStart() == inputExpressionLength) {
+                        if (inputExpressionLength != 0) {
+                            inputExpression.setSelection(inputExpressionLength);
                             inputExpression.setCursorVisible(true);
-                            String input_expression_string = inputExpression.getText().toString();
-                            input_expression_string = input_expression_string.substring(0, input_expression_length - 1);
-                            inputExpression.setText(input_expression_string);
+                            String inputExpressionString = inputExpression.getText().toString();
+                            inputExpressionString = inputExpressionString.substring(0, inputExpressionLength - 1);
+                            inputExpression.setText(inputExpressionString);
                             setCursor();
                             vibrate();
                         } else {
@@ -205,7 +193,7 @@ public class FrontendInput extends AppCompatActivity
                         }
                     } else {
                         int positionCursor = inputExpression.getSelectionStart();
-                        int inputExpressionLength = inputExpression.length();
+                        inputExpressionLength = inputExpression.length();
                         String inputExpressionString = inputExpression.getText().toString();
                         inputExpressionString.indexOf(positionCursor);
                         String inputDeleted = inputExpressionString.substring(0, positionCursor - 1) + inputExpressionString.substring(positionCursor, inputExpressionLength);
@@ -217,36 +205,33 @@ public class FrontendInput extends AppCompatActivity
                 }
             }
         };
-        button_delete.setOnClickListener(button_delete_listener);
+        buttonDelete.setOnClickListener(buttonDeleteListener);
 
         //
         //
 
-        button_plus = findViewById(R.id.button_plus);
-        button_plus.setWidth(width_screen / 3);
-        button_plus.setHeight(height_screen / 3);
-        View.OnClickListener button_plus_listener = new View.OnClickListener() {
+        buttonPlus = findViewById(R.id.buttonPlus);
+        View.OnClickListener buttonPlusListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 inputExpression.setText(inputExpression.getText() + "+");
-                vibrate();
-                int input_expression_length = inputExpression.length();
-                inputExpression.setSelection(input_expression_length);
-                if (input_expression_length == 15) {
+                Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                vibe.vibrate(50);
+                int inputExpressionLength = inputExpression.length();
+                inputExpression.setSelection(inputExpressionLength);
+                if (inputExpressionLength == 15) {
                     findViewById(R.id.lastInputs).setVisibility(View.INVISIBLE);
                 }
-                inputExpression.setSelection(input_expression_length);
+                inputExpression.setSelection(inputExpressionLength);
             }
         };
-        button_plus.setOnClickListener(button_plus_listener);
+        buttonPlus.setOnClickListener(buttonPlusListener);
 
         //
         //
 
-        button_multiply = findViewById(R.id.button_multiply);
-        button_multiply.setWidth(width_screen / 3);
-        button_multiply.setHeight(height_screen / 3);
-        View.OnClickListener button_multiply_listener = new View.OnClickListener() {
+        buttonMultiply = findViewById(R.id.buttonMultiply);
+        View.OnClickListener buttonMultiplyListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 inputExpression.setText(inputExpression.getText() + "*");
@@ -255,15 +240,13 @@ public class FrontendInput extends AppCompatActivity
                 setHistoryInvisible();
             }
         };
-        button_multiply.setOnClickListener(button_multiply_listener);
+        buttonMultiply.setOnClickListener(buttonMultiplyListener);
 
         //
         //
 
-        button_not = findViewById(R.id.button_not);
-        button_not.setWidth(width_screen / 3);
-        button_not.setHeight(height_screen / 3);
-        View.OnClickListener button_not_listener = new View.OnClickListener() {
+        buttonNot = findViewById(R.id.buttonNot);
+        View.OnClickListener buttonNotListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 inputExpression.setText(inputExpression.getText() + "¬");
@@ -272,15 +255,13 @@ public class FrontendInput extends AppCompatActivity
                 setHistoryInvisible();
             }
         };
-        button_not.setOnClickListener(button_not_listener);
+        buttonNot.setOnClickListener(buttonNotListener);
 
         //
         //
 
-        button_arrow = findViewById(R.id.button_arrow);
-        button_arrow.setWidth(width_screen / 3);
-        button_arrow.setHeight(height_screen / 3);
-        View.OnClickListener button_arrow_listener = new View.OnClickListener() {
+        buttonArrow = findViewById(R.id.buttonArrow);
+        View.OnClickListener buttonArrowListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 inputExpression.setText(inputExpression.getText() + "→");
@@ -289,15 +270,13 @@ public class FrontendInput extends AppCompatActivity
                 setHistoryInvisible();
             }
         };
-        button_arrow.setOnClickListener(button_arrow_listener);
+        buttonArrow.setOnClickListener(buttonArrowListener);
 
         //
         //
 
-        button_darrow = findViewById(R.id.button_darrow);
-        button_darrow.setWidth(width_screen / 3);
-        button_darrow.setHeight(height_screen / 3);
-        View.OnClickListener button_darrow_listener = new View.OnClickListener() {
+        buttonDarrow = findViewById(R.id.buttonDarrow);
+        View.OnClickListener buttonDarrowListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 inputExpression.setText(inputExpression.getText() + "↔");
@@ -306,15 +285,13 @@ public class FrontendInput extends AppCompatActivity
                 setHistoryInvisible();
             }
         };
-        button_darrow.setOnClickListener(button_darrow_listener);
+        buttonDarrow.setOnClickListener(buttonDarrowListener);
 
         //
         //
 
-        button_bracket1 = findViewById(R.id.button_bracket1);
-        button_bracket1.setWidth(width_screen / 3);
-        button_bracket1.setHeight(height_screen / 3);
-        View.OnClickListener button_bracket1_listener = new View.OnClickListener() {
+        buttonBracket1 = findViewById(R.id.buttonBracket1);
+        View.OnClickListener buttonBracket1Listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 inputExpression.setText(inputExpression.getText() + "(");
@@ -323,36 +300,33 @@ public class FrontendInput extends AppCompatActivity
                 setHistoryInvisible();
             }
         };
-        button_bracket1.setOnClickListener(button_bracket1_listener);
+        buttonBracket1.setOnClickListener(buttonBracket1Listener);
 
         //
         //
 
-        button_bracket2 = findViewById(R.id.button_bracket2);
-        button_bracket2.setWidth(width_screen / 3);
-        button_bracket2.setHeight(height_screen / 3);
-        View.OnClickListener button_bracket2_listener = new View.OnClickListener() {
+        buttonBracket2 = findViewById(R.id.buttonBracket2);
+        View.OnClickListener buttonBracket2Listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 inputExpression.setText(inputExpression.getText() + ")");
-                vibrate();
-                int input_expression_length = inputExpression.length();
-                inputExpression.setSelection(input_expression_length);
-                if (input_expression_length == 15) {
+                Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                vibe.vibrate(50);
+                int inputExpressionLength = inputExpression.length();
+                inputExpression.setSelection(inputExpressionLength);
+                if (inputExpressionLength == 15) {
                     findViewById(R.id.lastInputs).setVisibility(View.INVISIBLE);
                 }
-                inputExpression.setSelection(input_expression_length);
+                inputExpression.setSelection(inputExpressionLength);
             }
         };
-        button_bracket2.setOnClickListener(button_bracket2_listener);
+        buttonBracket2.setOnClickListener(buttonBracket2Listener);
 
         //
         //
 
-        button_a = findViewById(R.id.button_a);
-        button_a.setWidth(width_screen / 3);
-        button_a.setHeight(height_screen / 3);
-        View.OnClickListener button_a_listener = new View.OnClickListener() {
+        buttonA = findViewById(R.id.buttonA);
+        View.OnClickListener buttonAListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 inputExpression.setText(inputExpression.getText() + "a");
@@ -361,15 +335,13 @@ public class FrontendInput extends AppCompatActivity
                 setHistoryInvisible();
             }
         };
-        button_a.setOnClickListener(button_a_listener);
+        buttonA.setOnClickListener(buttonAListener);
 
         //
         //
 
-        button_b = findViewById(R.id.button_b);
-        button_b.setWidth(width_screen / 3);
-        button_b.setHeight(height_screen / 3);
-        View.OnClickListener button_b_listener = new View.OnClickListener() {
+        buttonB = findViewById(R.id.buttonB);
+        View.OnClickListener buttonBListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 inputExpression.setText(inputExpression.getText() + "b");
@@ -378,15 +350,13 @@ public class FrontendInput extends AppCompatActivity
                 setHistoryInvisible();
             }
         };
-        button_b.setOnClickListener(button_b_listener);
+        buttonB.setOnClickListener(buttonBListener);
 
         //
         //
 
-        button_c = findViewById(R.id.button_c);
-        button_c.setWidth(width_screen / 3);
-        button_c.setHeight(height_screen / 3);
-        View.OnClickListener button_c_listener = new View.OnClickListener() {
+        buttonC = findViewById(R.id.buttonC);
+        View.OnClickListener buttonCListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 inputExpression.setText(inputExpression.getText() + "c");
@@ -395,15 +365,13 @@ public class FrontendInput extends AppCompatActivity
                 setHistoryInvisible();
             }
         };
-        button_c.setOnClickListener(button_c_listener);
+        buttonC.setOnClickListener(buttonCListener);
 
         //
         //
 
-        button_d = findViewById(R.id.button_d);
-        button_d.setWidth(width_screen / 3);
-        button_d.setHeight(height_screen / 3);
-        View.OnClickListener button_d_listener = new View.OnClickListener() {
+        buttonD = findViewById(R.id.buttonD);
+        View.OnClickListener buttonDListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 inputExpression.setText(inputExpression.getText() + "d");
@@ -412,15 +380,13 @@ public class FrontendInput extends AppCompatActivity
                 setHistoryInvisible();
             }
         };
-        button_d.setOnClickListener(button_d_listener);
+        buttonD.setOnClickListener(buttonDListener);
 
         //
         //
 
-        button_e = findViewById(R.id.button_e);
-        button_e.setWidth(width_screen / 3);
-        button_e.setHeight(height_screen / 3);
-        View.OnClickListener button_e_listener = new View.OnClickListener() {
+        buttonE = findViewById(R.id.buttonE);
+        View.OnClickListener buttonEListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 inputExpression.setText(inputExpression.getText() + "e");
@@ -429,15 +395,13 @@ public class FrontendInput extends AppCompatActivity
                 setHistoryInvisible();
             }
         };
-        button_e.setOnClickListener(button_e_listener);
+        buttonE.setOnClickListener(buttonEListener);
 
         //
         //
 
-        button_f = findViewById(R.id.button_f);
-        button_f.setWidth(width_screen / 3);
-        button_f.setHeight(height_screen / 3);
-        View.OnClickListener button_f_listener = new View.OnClickListener() {
+        buttonF = findViewById(R.id.buttonF);
+        View.OnClickListener buttonFListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 inputExpression.setText(inputExpression.getText() + "f");
@@ -446,7 +410,7 @@ public class FrontendInput extends AppCompatActivity
                 setHistoryInvisible();
             }
         };
-        button_f.setOnClickListener(button_f_listener);
+        buttonF.setOnClickListener(buttonFListener);
 
         //
         //
@@ -485,21 +449,19 @@ public class FrontendInput extends AppCompatActivity
         //
         //
 
-        button_solve = findViewById(R.id.button_solve);
-        button_solve.setWidth(width_screen / 3);
-        button_solve.setHeight(height_screen / 3);
+        buttonSolve = findViewById(R.id.buttonSolve);
 
-        View.OnClickListener button_solve_listener = new View.OnClickListener() {
+        View.OnClickListener buttonSolveListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 vibrate();
-                if (checkEmptyInput()) {
+                if (checkEmptyInput() == true) {
                     Toast.makeText(FrontendInput.this, "Keine leere Eingabe erlaubt!", Toast.LENGTH_SHORT).show();
-                } else if (!checkFirstInput()) {
+                } else if (checkFirstInput() == false) {
                     Toast.makeText(FrontendInput.this, "Falsches erstes Zeichen!", Toast.LENGTH_SHORT).show();
-                } else if (!checkValidInput()) {
+                } else if (checkValidInput() == false) {
                     Toast.makeText(FrontendInput.this, "Fehlerhafte Eingabe!", Toast.LENGTH_SHORT).show();
-                }  else if (!checkEmptyInput() && !checkFirstInput() && checkValidInput()) {
+                }  else if (checkEmptyInput() == false && checkFirstInput() == true && checkValidInput() == true) {
 
                     //Die Eingaben in das Array lastInputsArray speichern
 
@@ -521,8 +483,7 @@ public class FrontendInput extends AppCompatActivity
 
                             //Hier muss an Stelle von Backend noch definiert werden, an welche Activity die Eingabe übergeben wird
 
-                            FrontendInput.class
-                    );
+                            Credits.class);
 
 
 
@@ -534,7 +495,7 @@ public class FrontendInput extends AppCompatActivity
                 }
             }
         };
-        button_solve.setOnClickListener(button_solve_listener);
+        buttonSolve.setOnClickListener(buttonSolveListener);
     }
 
     boolean doubleBackToExitPressedOnce = false;
@@ -587,9 +548,9 @@ public class FrontendInput extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.nav_vgl) {
-            button_solve.setText("2. Ausdruck");
+            buttonSolve.setText("2. Ausdruck");
         } else {
-            button_solve.setText("Lösen");
+            buttonSolve.setText("Lösen");
         }
 
         if (id == R.id.nav_wt || getTitle() == "BoolTR") {
